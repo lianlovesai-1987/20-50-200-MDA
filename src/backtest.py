@@ -56,7 +56,7 @@ def run_backtest(df: pd.DataFrame,
         # SELL signal — only exit if we're in a trade
         elif sig == -1 and in_trade:
             cash     = shares * price
-            pnl      = cash - starting_capital if not trades else cash - (trades[-1]["exit_value"])
+            pnl      = (price - entry_price) / entry_price * shares
             trade_return = (price - entry_price) / entry_price * 100
             trades.append({
                 "entry_date":   entry_date,
